@@ -1,5 +1,8 @@
 package com.srikanth.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.srikanth.Model.Laptop;
-
+import com.srikanth.Model.Student;
 import com.srikanth.Service.Impl.LaptopServiceImpl;
 
 
@@ -54,6 +57,19 @@ public class LaptopController {
 		
 		
 		return "DisplayLaptopDetails.jsp";
+	}
+	
+	@RequestMapping("/laptopDetails")
+	public String DisplayAllStudents(Model model)
+	{
+		List<Laptop> list = new ArrayList();
+		
+		list = laptopService.displayAllLaptops();
+		
+		model.addAttribute("list", list);
+		
+		return "displayAllLaptops.jsp";
+		
 	}
 	
 

@@ -15,6 +15,15 @@
 <input type = "submit" value = "Choose Laptop">
 </form>
 
+<form action = "studentDetails">
+<input type = "submit" value = "Display Student Details">
+</form>
+
+<form action = "laptopDetails">
+<input type = "submit" value = "Display Laptop Details">
+</form>
+
+
 </body>
 </center>
 </html>

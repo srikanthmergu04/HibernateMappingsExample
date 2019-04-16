@@ -1,5 +1,9 @@
 package com.srikanth.Dao.Impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.srikanth.Dao.LaptopDao;
 import com.srikanth.Model.Laptop;
+import com.srikanth.Model.Student;
 
 public class LaptopDaoImpl implements LaptopDao {
 
@@ -30,6 +35,22 @@ public class LaptopDaoImpl implements LaptopDao {
 		
 		return primary;
 		
+	}
+
+	public List<Laptop> displayAllLaptops() {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.openSession();
+		
+		Query query = (Query) session.createQuery("from Laptop");
+		
+		List<Laptop> list = new ArrayList();
+		
+		list = query.list();
+		
+		return list;
+		
+		//return null;
 	}
 
 }

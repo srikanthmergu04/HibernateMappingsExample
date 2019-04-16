@@ -1,5 +1,8 @@
 package com.srikanth.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +69,19 @@ public class StudentController {
 	   studentService.addLaptop(lid, sid);
 		
 		return null;
+		
+	}
+	
+	@RequestMapping("/studentDetails")
+	public String DisplayAllStudents(Model model)
+	{
+		List<Student> list = new ArrayList();
+		
+		list = studentService.displayAllStudents();
+		
+		model.addAttribute("list", list);
+		
+		return "displayAllStudents.jsp";
 		
 	}
 
