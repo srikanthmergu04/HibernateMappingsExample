@@ -9,79 +9,65 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.srikanth.Model.Student;
 import com.srikanth.Service.StudentService;
 import com.srikanth.Service.Impl.StudentServiceImpl;
 
-@Controller
+//@Controller
+@RestController
 public class StudentController {
 	
 	@Autowired
 	StudentServiceImpl studentService;
-	
-	@RequestMapping("/CreateStudent")
-	public ModelAndView registerStudents(Model model)
-	{
-		//System.out.println("service obj = "+service);
-		
-		//model.addAttribute("customer", new Customer());
-		ModelAndView m = new ModelAndView();
 
-		m.addObject("student", new Student());
-		
-		m.setViewName("RegisterStudent.jsp");
-		
-		return m;
 	
-		
-	}
-	
-	@RequestMapping(value="/StudentSuccess", method=RequestMethod.POST)
-	public String registerSuccess(@ModelAttribute("student") Student student , Model model ) {
+	@RequestMapping(value="/RegisterStudent", method=RequestMethod.POST)
+	public /*String*/ Student registerSuccess(@RequestParam("name") String name , @RequestParam("age") Integer age , @RequestParam("dept") String dept ) {
 		
 	
+		Student student = new Student();
 		
-		//System.out.println(customer.getName());
-		//System.out.println(customer.getCity());
+		student.setName(name);
+		student.setAge(age);
+		student.setDept(dept);
 		
-		
-		
-		model.addAttribute("student", student);
-		
+			
 		studentService.addStudent(student);
 		
+		return student;
 		
-		return "DisplayStudentDetails.jsp";
 	}
 	
-	@RequestMapping("/addLaptop")
-	public String chooseLaptop(HttpServletRequest req , Model model)
+	@RequestMapping(value = "/addLaptop" , method = RequestMethod.POST)
+	public String chooseLaptop(@RequestParam("sid") int sid , @RequestParam("lid") int lid)
 	{
-		int sid = Integer.parseInt(req.getParameter("sid"));
-		int lid = Integer.parseInt(req.getParameter("lid"));
+
 		
 		System.out.println(" sid = "+sid+" :: "+" lid =  "+lid);
 		
-	   studentService.addLaptop(lid, sid);
+		studentService.addLaptop(lid, sid);
 		
-		return null;
+		return "Laptop Added Successfully";
 		
 	}
 	
-	@RequestMapping("/studentDetails")
-	public String DisplayAllStudents(Model model)
+	@RequestMapping(value = "/getStudentDetails" , method = RequestMethod.GET)
+	public List<Student> DisplayAllStudents()
 	{
 		List<Student> list = new ArrayList();
 		
 		list = studentService.displayAllStudents();
 		
-		model.addAttribute("list", list);
+			return list;
 		
-		return "displayAllStudents.jsp";
 		
 	}
 
