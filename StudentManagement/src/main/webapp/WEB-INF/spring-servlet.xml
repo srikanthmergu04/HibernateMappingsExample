@@ -77,6 +77,18 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 <bean id="LaptopDao" class="com.srikanth.Dao.Impl.LaptopDaoImpl">    
 </bean>  
+
+<bean id="addressService" class="com.srikanth.Service.Impl.AddressServiceImpl">    
+</bean>
+
+<bean id="addressDao" class="com.srikanth.Dao.Impl.AddressDaoImpl">    
+</bean>  
+
+<bean id="bankAccountService" class="com.srikanth.Service.Impl.BankAccountServiceImpl">    
+</bean>
+
+<bean id="bankAccountDao" class="com.srikanth.Dao.Impl.BankAccountDaoImpl">    
+</bean>  
     
     
 

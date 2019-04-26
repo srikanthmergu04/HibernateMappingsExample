@@ -1,0 +1,5 @@
+select *from dbtesting.Student;
+
+select *from dbtesting.Laptop;
+
+select *from DBTESTING.Student_Laptop;

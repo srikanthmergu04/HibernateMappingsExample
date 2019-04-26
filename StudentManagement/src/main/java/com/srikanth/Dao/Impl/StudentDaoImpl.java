@@ -14,10 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.srikanth.Dao.StudentDao;
 import com.srikanth.Model.Student;
-
+import com.srikanth.Model.Address;
+import com.srikanth.Model.BankAccount;
 import com.srikanth.Model.Laptop;
 
-public class StudentDaoImpl implements StudentDao {
+public class StudentDaoImpl implements StudentDao{
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -25,24 +26,10 @@ public class StudentDaoImpl implements StudentDao {
 	public int addStudent(Student student) {
 		// TODO Auto-generated method stub
 		
-	Session session = sessionFactory.openSession();
+		Session session = sessionFactory.openSession();
 		
 		Transaction trnx = session.beginTransaction();
-		
-		/*Laptop lap = (Laptop) session.get(Laptop.class, 1);
-		
-		Set<Laptop> laptop = new HashSet<Laptop>();
-	
-		if(student.getLap() == null)
-		{
-			student.setLap(laptop);
-		}
-	
-		//student.setLap(lap);
-		
-		student.getLap().add(lap);
-		
-		*/
+
 		int primary = (Integer) session.save(student);
 		
 		System.out.println("primary = "+primary);
@@ -100,7 +87,74 @@ public class StudentDaoImpl implements StudentDao {
 		
 		list = query.list();
 		
+		session.close();
+		
 		return list;
+	}
+
+	public Student getStudentById(int id) {
+		// TODO Auto-generated method stub
+		
+		Student student = new Student();
+		
+		Session session = sessionFactory.openSession();
+		
+		student = (Student) session.get(Student.class, id);
+		
+		session.close();
+		
+		return student;
+	}
+
+	public void addAddress(Integer sid, Integer aid) {
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.openSession();
+		
+		Transaction tran = session.beginTransaction();
+		
+		Address address = (Address) session.get(Address.class, aid);
+		
+		Student student = (Student) session.get(Student.class, sid);
+		
+		student.setAddress(address);
+		
+		session.update(student);
+		
+		tran.commit();
+		
+		session.close();
+		
+	}
+
+	public void addAccount(int sid, int aid) {
+		// TODO Auto-generated method stub
+		
+	Session session = sessionFactory.openSession();
+		
+		Transaction trnx = session.beginTransaction();
+		
+		BankAccount account = (BankAccount) session.get(BankAccount.class, aid);
+		
+		Student student = (Student) session.get(Student.class, sid);
+		
+		Set<BankAccount> acc = new HashSet<BankAccount>();
+		
+		if(student.getLap() == null)
+		{
+			student.setAccounts(acc);
+		}
+	
+		//student.setLap(lap);
+		
+		student.getAccounts().add(account);
+		
+		session.update(student);
+		
+		trnx.commit();
+		
+		session.close();
+		
 	}
 
 }

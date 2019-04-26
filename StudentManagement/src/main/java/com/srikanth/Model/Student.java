@@ -6,10 +6,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -36,26 +38,39 @@ public class Student {
 	@Column
 	private String dept;
 	
-	//@OneToMany(cascade = CascadeType.ALL , targetEntity = Laptop.class)
-	@ManyToMany(cascade = CascadeType.ALL , targetEntity = Laptop.class)
+	@OneToOne(cascade = CascadeType.ALL , targetEntity = Address.class)
+	private Address address;
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL , targetEntity = BankAccount.class , fetch = FetchType.EAGER)
+	@JoinTable(name = "Student_Account" , 
+	joinColumns = {@JoinColumn(name = "student_id")} ,
+    inverseJoinColumns = {@JoinColumn(name = "account_id")}
+	)
+	private Set<BankAccount> accounts;	
+
+	public Set<BankAccount> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<BankAccount> accounts) {
+		this.accounts = accounts;
+	}
+
+	@ManyToMany(cascade = CascadeType.ALL , targetEntity = Laptop.class , fetch = FetchType.EAGER)
 	@JoinTable(name = "Student_Laptop" ,
 	joinColumns = { @JoinColumn(name = "Student_id") } , 
 	inverseJoinColumns = { @JoinColumn(name = "Laptop_id")}
 	)
 	private Set<Laptop> lap;
 	
-	/*
-	@OneToOne(cascade = CascadeType.ALL , targetEntity = Laptop.class)
-	private Laptop lap;
-	
-	public Laptop getLap() {
-		return lap;
-	}
-
-	public void setLap(Laptop lap) {
-		this.lap = lap;
-	}
-	*/
 
 	public Set<Laptop> getLap() {
 		return lap;

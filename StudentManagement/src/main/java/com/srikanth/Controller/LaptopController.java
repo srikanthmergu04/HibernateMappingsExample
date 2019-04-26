@@ -45,7 +45,7 @@ public class LaptopController {
 		return laptop;
 	}
 	
-	@RequestMapping(value = "/LaptopDetails" , method = RequestMethod.GET)
+	@RequestMapping(value = "/getLaptopDetails" , method = RequestMethod.GET)
 	public List<Laptop> DisplayAllStudents(Model model)
 	{
 		List<Laptop> list = new ArrayList();

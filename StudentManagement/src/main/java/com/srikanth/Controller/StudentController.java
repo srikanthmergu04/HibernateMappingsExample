@@ -21,7 +21,7 @@ import com.srikanth.Model.Student;
 import com.srikanth.Service.StudentService;
 import com.srikanth.Service.Impl.StudentServiceImpl;
 
-//@Controller
+
 @RestController
 public class StudentController {
 	
@@ -30,7 +30,7 @@ public class StudentController {
 
 	
 	@RequestMapping(value="/RegisterStudent", method=RequestMethod.POST)
-	public /*String*/ Student registerSuccess(@RequestParam("name") String name , @RequestParam("age") Integer age , @RequestParam("dept") String dept ) {
+	public Student registerSuccess(@RequestParam("name") String name , @RequestParam("age") Integer age , @RequestParam("dept") String dept ) {
 		
 	
 		Student student = new Student();
@@ -68,6 +68,41 @@ public class StudentController {
 		
 			return list;
 		
+		
+	}
+	
+	@RequestMapping(value = "/getStudentById" , method = RequestMethod.GET)
+	public Student getStudentById(@RequestParam("id") int id)
+	{
+		Student student = new Student();
+		
+		student = studentService.getStudentById(id);
+		
+		return student;
+	}
+	
+	
+	@RequestMapping(value = "/addAddress" , method = RequestMethod.POST)
+	public String addAddress(@RequestParam("sid") Integer sid , @RequestParam("aid") Integer aid)
+	{
+		System.out.println("sid = "+sid+" : :"+" aid = "+aid);
+		
+		studentService.addAddress(sid, aid);		
+		
+		return "Address Added Successfully";
+		
+	}
+	
+	@RequestMapping(value = "/addAccount" , method = RequestMethod.POST)
+	public String addAccount(@RequestParam("sid") int sid , @RequestParam("aid") int aid)
+	{
+
+		
+		System.out.println(" sid = "+sid+" :: "+" aid =  "+aid);
+		
+		studentService.addAccount(sid, aid);
+		
+		return "Account Added Successfully";
 		
 	}
 

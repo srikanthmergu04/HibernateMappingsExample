@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Laptop {
 	@Column
 	private Integer cost;
 	
-	@ManyToMany(mappedBy = "lap")
+	@ManyToMany(mappedBy = "lap" , fetch = FetchType.EAGER)
 	private Set<Student> stu;
 
 	public Integer getLid() {

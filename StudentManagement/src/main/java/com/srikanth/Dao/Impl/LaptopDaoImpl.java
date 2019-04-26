@@ -21,7 +21,7 @@ public class LaptopDaoImpl implements LaptopDao {
 	public int addLaptop(Laptop laptop) {
 		// TODO Auto-generated method stub
 		
-	Session session = sessionFactory.openSession();
+		Session session = sessionFactory.openSession();
 		
 		Transaction trnx = session.beginTransaction();
 		
@@ -47,6 +47,8 @@ public class LaptopDaoImpl implements LaptopDao {
 		List<Laptop> list = new ArrayList();
 		
 		list = query.list();
+		
+		session.close();
 		
 		return list;
 		

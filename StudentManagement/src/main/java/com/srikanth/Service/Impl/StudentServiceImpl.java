@@ -39,4 +39,28 @@ public class StudentServiceImpl implements StudentService {
 		return list;
 	}
 
+	public Student getStudentById(int id) {
+		// TODO Auto-generated method stub
+		
+		Student student = new Student();
+		
+		student = StudentDao.getStudentById(id);
+		
+		return student;
+	}
+
+	public void addAddress(Integer sid, Integer aid) {
+		// TODO Auto-generated method stub
+		
+		StudentDao.addAddress(sid, aid);
+		
+	}
+
+	public void addAccount(int sid, int aid) {
+		// TODO Auto-generated method stub
+		
+		StudentDao.addAccount(sid, aid);
+		
+	}
+
 }
