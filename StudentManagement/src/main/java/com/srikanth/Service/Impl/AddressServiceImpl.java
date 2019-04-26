@@ -1,5 +1,7 @@
 package com.srikanth.Service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.srikanth.Dao.Impl.AddressDaoImpl;
@@ -16,6 +18,14 @@ public class AddressServiceImpl implements AddressService {
 		
 		addressDao.addAddress(address);
 
+	}
+
+	public List<Address> listAllAddress() {
+		// TODO Auto-generated method stub
+		
+		return addressDao.listAllAddress();
+		
+		//return null;
 	}
 
 }

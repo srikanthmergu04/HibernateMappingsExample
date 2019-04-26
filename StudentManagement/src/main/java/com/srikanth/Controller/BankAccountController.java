@@ -1,5 +1,7 @@
 package com.srikanth.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,13 @@ public class BankAccountController {
 		bankAccountService.addaccount(account);
 		
 		return account;
+		
+	}
+	
+	@RequestMapping(value = "/listAllAccounts" , method = RequestMethod.GET)
+	public List<BankAccount> listAllAccounts()
+	{
+		return bankAccountService.listAllAccounts();
 		
 	}
 

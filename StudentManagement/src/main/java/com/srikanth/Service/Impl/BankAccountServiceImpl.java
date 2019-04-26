@@ -1,5 +1,7 @@
 package com.srikanth.Service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.srikanth.Dao.Impl.BankAccountDaoImpl;
@@ -16,6 +18,11 @@ public class BankAccountServiceImpl implements BankAccountService {
 		
 		bankAccountDao.addaccount(account);
 
+	}
+
+	public List<BankAccount> listAllAccounts() {
+		// TODO Auto-generated method stub
+		return bankAccountDao.listAllAccounts();
 	}
 
 }
