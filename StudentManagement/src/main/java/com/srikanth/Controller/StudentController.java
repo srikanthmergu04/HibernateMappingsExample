@@ -1,6 +1,7 @@
 package com.srikanth.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +31,14 @@ public class StudentController {
 
 	
 	@RequestMapping(value="/RegisterStudent", method=RequestMethod.POST)
-	public Student registerSuccess(@RequestParam("name") String name , @RequestParam("age") Integer age , @RequestParam("dept") String dept ) {
+	public Student registerSuccess(@RequestBody Student student) {
 		
-	
-		Student student = new Student();
-		
-		student.setName(name);
-		student.setAge(age);
-		student.setDept(dept);
+	//@RequestParam("name") String name , @RequestParam("age") Integer age , @RequestParam("dept") String dept
+		/*
+		 * Student student = new Student();
+		 * 
+		 * student.setName(name); student.setAge(age); student.setDept(dept);
+		 */
 		
 			
 		studentService.addStudent(student);
@@ -47,13 +48,13 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/addLaptop" , method = RequestMethod.POST)
-	public String chooseLaptop(@RequestParam("sid") int sid , @RequestParam("lid") int lid)
+	public String chooseLaptop(@RequestBody HashMap<Integer, Integer> laptop)//@RequestParam("sid") int sid , @RequestParam("lid") int lid
 	{
 
 		
-		System.out.println(" sid = "+sid+" :: "+" lid =  "+lid);
+		System.out.println(" sid = "+laptop.get("sid")+" :: "+" lid =  "+laptop.get("lid"));
 		
-		studentService.addLaptop(lid, sid);
+		studentService.addLaptop(laptop.get("sid"), laptop.get("lid"));
 		
 		return "Laptop Added Successfully";
 		
@@ -83,24 +84,24 @@ public class StudentController {
 	
 	
 	@RequestMapping(value = "/addAddress" , method = RequestMethod.POST)
-	public String addAddress(@RequestParam("sid") Integer sid , @RequestParam("aid") Integer aid)
+	public String addAddress(@RequestBody HashMap<Integer, Integer> address)
 	{
-		System.out.println("sid = "+sid+" : :"+" aid = "+aid);
+		System.out.println(" sid = "+address.get("sid")+" :: "+" lid =  "+address.get("lid"));
 		
-		studentService.addAddress(sid, aid);		
+		studentService.addAddress(address.get("sid"), address.get("aid"));		
 		
 		return "Address Added Successfully";
 		
 	}
 	
 	@RequestMapping(value = "/addAccount" , method = RequestMethod.POST)
-	public String addAccount(@RequestParam("sid") int sid , @RequestParam("aid") int aid)
+	public String addAccount(@RequestBody HashMap<Integer, Integer> account)
 	{
 
 		
-		System.out.println(" sid = "+sid+" :: "+" aid =  "+aid);
+		System.out.println(" sid = "+account.get("sid")+" :: "+" aid =  "+account.get("aid"));
 		
-		studentService.addAccount(sid, aid);
+		studentService.addAccount(account.get("sid"), account.get("aid"));
 		
 		return "Account Added Successfully";
 		

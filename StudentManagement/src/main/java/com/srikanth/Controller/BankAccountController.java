@@ -3,6 +3,7 @@ package com.srikanth.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +19,13 @@ public class BankAccountController {
 	BankAccountServiceImpl bankAccountService;
 	
 	@RequestMapping(value = "/registerBankAccount" , method = RequestMethod.POST)
-	public BankAccount registerBankAccount(@RequestParam("acNo") int acNo , @RequestParam("IFSC") String IFSC , @RequestParam("branch") String branch)
+	public BankAccount registerBankAccount(@RequestBody BankAccount account)//@RequestParam("acNo") int acNo , @RequestParam("IFSC") String IFSC , @RequestParam("branch") String branch
 	{
-		BankAccount account = new BankAccount();
-		
-		account.setAcNo(acNo);
-		account.setIFSC(IFSC);
-		account.setBranch(branch);
+		/*
+		 * BankAccount account = new BankAccount();
+		 * 
+		 * account.setAcNo(acNo); account.setIFSC(IFSC); account.setBranch(branch);
+		 */
 		
 		bankAccountService.addaccount(account);
 		

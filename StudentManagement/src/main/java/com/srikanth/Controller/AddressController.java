@@ -3,6 +3,7 @@ package com.srikanth.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,14 +20,14 @@ public class AddressController {
 	AddressServiceImpl addressService;
 	
 	@RequestMapping(value = "/registerAddress" , method = RequestMethod.POST)
-	public Address addAddress(@RequestParam("city") String city , @RequestParam("state") String state , @RequestParam("country") String country , @RequestParam("pin") Integer pin)
+	public Address addAddress(@RequestBody Address address)//@RequestParam("city") String city , @RequestParam("state") String state , @RequestParam("country") String country , @RequestParam("pin") Integer pin
 	{
-		Address address = new Address();
-		
-		address.setCity(city);
-		address.setState(state);
-		address.setCountry(country);
-		address.setPin(pin);
+		/*
+		 * Address address = new Address();
+		 * 
+		 * address.setCity(city); address.setState(state); address.setCountry(country);
+		 * address.setPin(pin);
+		 */
 		
 		addressService.addAddress(address);
 		

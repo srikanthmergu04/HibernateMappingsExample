@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,19 +29,16 @@ public class LaptopController {
 	
 	
 	@RequestMapping(value="/registerLaptop", method=RequestMethod.POST)
-	public Laptop registerSuccess(@RequestParam("lbrand") String lbrand , @RequestParam("ram") String ram , @RequestParam("cost") Integer cost) {
+	public Laptop registerSuccess(@RequestBody Laptop laptop) {//@RequestParam("lbrand") String lbrand , @RequestParam("ram") String ram , @RequestParam("cost") Integer cost
 		
 	
 		
-		Laptop laptop = new Laptop();
-		
-		laptop.setLbrand(lbrand);
-		laptop.setRam(ram);
-		laptop.setCost(cost);
-		
+		/*
+		 * Laptop laptop = new Laptop(); laptop.setLbrand(lbrand); laptop.setRam(ram);
+		 * laptop.setCost(cost);
+		 */
 		
 		laptopService.addLaptop(laptop);
-		
 		
 		return laptop;
 	}
