@@ -1,121 +1,101 @@
 package com.srikanth.Model;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
 @DynamicUpdate
 public class Student {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer sid;
-	
-	@Column
-	private String name;
-	
-	@Column
-	private Integer age;
-	
-	@Column
-	private String dept;
-	
-	@OneToOne(cascade = CascadeType.ALL , targetEntity = Address.class)
-	private Address address;
-	
-	public Address getAddress() {
-		return address;
-	}
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	
-	@OneToMany(cascade = CascadeType.ALL , targetEntity = BankAccount.class , fetch = FetchType.EAGER)
-	@JoinTable(name = "Student_Account" , 
-	joinColumns = {@JoinColumn(name = "student_id")} ,
-    inverseJoinColumns = {@JoinColumn(name = "account_id")}
-	)
-	private Set<BankAccount> accounts;	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer sid;
 
-	public Set<BankAccount> getAccounts() {
-		return accounts;
-	}
+    @Column
+    private String name;
 
-	public void setAccounts(Set<BankAccount> accounts) {
-		this.accounts = accounts;
-	}
+    @Column
+    private Integer age;
 
-	@ManyToMany(cascade = CascadeType.ALL , targetEntity = Laptop.class , fetch = FetchType.EAGER)
-	@JoinTable(name = "Student_Laptop" ,
-	joinColumns = { @JoinColumn(name = "Student_id") } , 
-	inverseJoinColumns = { @JoinColumn(name = "Laptop_id")}
-	)
-	private Set<Laptop> lap;
-	
+    @Column
+    private String dept;
 
-	public Set<Laptop> getLap() {
-		return lap;
-	}
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
+    private Address address;
 
-	public void setLap(Set<Laptop> lap) {
-		this.lap = lap;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public Integer getSid() {
-		return sid;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public void setSid(Integer sid) {
-		this.sid = sid;
-	}
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = BankAccount.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "Student_Account",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "account_id")}
+    )
+    private Set<BankAccount> accounts;
 
-	public String getName() {
-		return name;
-	}
+    public Set<BankAccount> getAccounts() {
+        return accounts;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAccounts(Set<BankAccount> accounts) {
+        this.accounts = accounts;
+    }
 
-	public Integer getAge() {
-		return age;
-	}
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Laptop.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "Student_Laptop",
+            joinColumns = {@JoinColumn(name = "Student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "Laptop_id")}
+    )
+    private Set<Laptop> lap;
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
 
-	public String getDept() {
-		return dept;
-	}
+    public Set<Laptop> getLap() {
+        return lap;
+    }
 
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
-	
-	
-	
-	
-	
-	
+    public void setLap(Set<Laptop> lap) {
+        this.lap = lap;
+    }
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
+
 
 }
