@@ -11,6 +11,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/studentResource")
 public class StudentController {
 
     @Autowired
@@ -35,7 +36,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/addLaptop", method = RequestMethod.POST)
-    public String chooseLaptop(@RequestBody HashMap<Integer, Integer> laptop)//@RequestParam("sid") int sid , @RequestParam("lid") int lid
+    public String chooseLaptop(@RequestBody HashMap<String, Integer> laptop)//@RequestParam("sid") int sid , @RequestParam("lid") int lid
     {
 
 
@@ -49,9 +50,8 @@ public class StudentController {
 
     @RequestMapping(value = "/getStudentDetails", method = RequestMethod.GET)
     public List<Student> DisplayAllStudents() {
-        List<Student> list = new ArrayList();
 
-        list = studentService.displayAllStudents();
+        List<Student> list = studentService.displayAllStudents();
 
         return list;
 
@@ -69,7 +69,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/addAddress", method = RequestMethod.POST)
-    public String addAddress(@RequestBody HashMap<Integer, Integer> address) {
+    public String addAddress(@RequestBody HashMap<String, Integer> address) {
         System.out.println(" sid = " + address.get("sid") + " :: " + " lid =  " + address.get("lid"));
 
         studentService.addAddress(address.get("sid"), address.get("aid"));
@@ -79,7 +79,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/addAccount", method = RequestMethod.POST)
-    public String addAccount(@RequestBody HashMap<Integer, Integer> account) {
+    public String addAccount(@RequestBody HashMap<String, Integer> account) {
 
 
         System.out.println(" sid = " + account.get("sid") + " :: " + " aid =  " + account.get("aid"));

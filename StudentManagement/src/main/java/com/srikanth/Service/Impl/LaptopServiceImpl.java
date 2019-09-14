@@ -11,12 +11,12 @@ import java.util.List;
 public class LaptopServiceImpl implements LaptopService {
 
     @Autowired
-    LaptopDaoImpl LaptopDao;
+    LaptopDaoImpl laptopDao;
 
     public int addLaptop(Laptop laptop) {
         // TODO Auto-generated method stub
 
-        LaptopDao.addLaptop(laptop);
+        laptopDao.addLaptop(laptop);
 
 
         return 0;
@@ -27,7 +27,7 @@ public class LaptopServiceImpl implements LaptopService {
 
         List<Laptop> list = new ArrayList();
 
-        list = LaptopDao.displayAllLaptops();
+        list = laptopDao.displayAllLaptops();
 
         return list;
 

@@ -20,6 +20,10 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <mvc:annotation-driven/>
 
 
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/StudentDetailsDb?createDatabaseIfNotExist=true"/>
@@ -67,13 +71,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <bean id="studentService" class="com.srikanth.Service.Impl.StudentServiceImpl">
     </bean>
 
-    <bean id="StudentDao" class="com.srikanth.Dao.Impl.StudentDaoImpl">
+    <bean id="studentDao" class="com.srikanth.Dao.Impl.StudentDaoImpl">
     </bean>
 
     <bean id="laptopService" class="com.srikanth.Service.Impl.LaptopServiceImpl">
     </bean>
 
-    <bean id="LaptopDao" class="com.srikanth.Dao.Impl.LaptopDaoImpl">
+    <bean id="laptopDao" class="com.srikanth.Dao.Impl.LaptopDaoImpl">
     </bean>
 
     <bean id="addressService" class="com.srikanth.Service.Impl.AddressServiceImpl">

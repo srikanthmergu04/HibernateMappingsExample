@@ -11,12 +11,12 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    StudentDaoImpl StudentDao;
+    StudentDaoImpl studentDao;
 
     public int addStudent(Student student) {
         // TODO Auto-generated method stub
 
-        StudentDao.addStudent(student);
+        studentDao.addStudent(student);
 
         return 0;
     }
@@ -24,7 +24,7 @@ public class StudentServiceImpl implements StudentService {
     public void addLaptop(int lid, int sid) {
         // TODO Auto-generated method stub
 
-        StudentDao.addLaptop(lid, sid);
+        studentDao.addLaptop(lid, sid);
 
     }
 
@@ -33,7 +33,7 @@ public class StudentServiceImpl implements StudentService {
 
         List<Student> list = new ArrayList();
 
-        list = StudentDao.displayAllStudents();
+        list = studentDao.displayAllStudents();
 
         return list;
     }
@@ -43,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
 
         Student student = new Student();
 
-        student = StudentDao.getStudentById(id);
+        student = studentDao.getStudentById(id);
 
         return student;
     }
@@ -51,14 +51,14 @@ public class StudentServiceImpl implements StudentService {
     public void addAddress(Integer sid, Integer aid) {
         // TODO Auto-generated method stub
 
-        StudentDao.addAddress(sid, aid);
+        studentDao.addAddress(sid, aid);
 
     }
 
     public void addAccount(int sid, int aid) {
         // TODO Auto-generated method stub
 
-        StudentDao.addAccount(sid, aid);
+        studentDao.addAccount(sid, aid);
 
     }
 
