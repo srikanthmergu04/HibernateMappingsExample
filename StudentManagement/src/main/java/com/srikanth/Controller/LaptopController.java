@@ -14,6 +14,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/LaptopService")
 public class LaptopController {
 
     @Autowired
